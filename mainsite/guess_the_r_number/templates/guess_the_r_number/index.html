@@ -1,0 +1,48 @@
+{% extends "home/base.html" %}
+
+{% block title %}<title>Guess the R Number</title>{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'guess_the_r_number/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="myDiv border border-success shadow">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <h3>Guess the R Number!</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="r_number">Input R Number</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-8 mb-2">
+                    <input type="number" id="r_number" name="r_number" placeholder="R Number" step="0.1"
+                        class="form-control">
+                </div>
+                <div class="col-md-4 mb-2">
+                    <input type="submit" value="Submit" onclick="response()" class="form-control btn btn-success">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-text" id="response_field">Response</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% load static %}
+    <script src="{% static 'guess_the_r_number/response.js' %}"></script>
+
+{% endblock %}
