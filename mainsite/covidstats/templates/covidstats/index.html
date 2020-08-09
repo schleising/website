@@ -1,0 +1,11 @@
+{% extends "home/base.html" %}
+
+{% block title %}<title>Covid Stats</title>{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% load static %}
+        <embed src="{% static 'covidstats/covid_stats.html' %}" width="100%" style="height:calc(100vh - 54px)"></embed>
+    </div>
+
+{% endblock %}
