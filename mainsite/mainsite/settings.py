@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'schleising.synology.me',
     'localhost',
+    'www.schleising.net',
+    'schleising.net'
 ]
 
 
