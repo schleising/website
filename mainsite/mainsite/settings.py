@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'guess_the_r_number.apps.GuessTheRNumberConfig',
     'covidstats.apps.CovidstatsConfig',
+    'twatter.apps.TwatterConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
