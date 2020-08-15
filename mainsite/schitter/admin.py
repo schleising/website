@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Twaat
+from .models import Schitt
 
-admin.site.register(Twaat)
+admin.site.register(Schitt)

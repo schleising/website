@@ -1,33 +1,33 @@
 {% extends "home/base.html" %}
 
-{% block title %}<title>Twatter</title>{% endblock %}
+{% block title %}<title>Schitter</title>{% endblock %}
 
 {% block content %}
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <h2>Twatter</h2>
+            <h2>Schitter</h2>
         </div>
     </div>
-    {% if latest_twaats %}
-        {% for twaat in latest_twaats %}
+    {% if latest_schitts %}
+        {% for schitt in latest_schitts %}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">{{ twaat.name_text }}</h3>
-                            <p class="card-text">{{ twaat.twaat_text }}</p>
+                            <h3 class="card-title">{{ schitt.name_text }}</h3>
+                            <p class="card-text">{{ schitt.schitt_text }}</p>
                         </div>
                         <div class="card-footer">
-                            <p class="card-text">{{ twaat.pub_date }}</p>
+                            <p class="card-text">{{ schitt.pub_date }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     {% else %}
-        <h5>No Twaats Here</h5>
+        <h5>No Schitts Here</h5>
     {% endif %}
 </div>
 
