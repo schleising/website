@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ssqh(1esc8=x$d3s)5)^!5=q8chriyqm1o15!p*q_ri7gcr+_)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'guess_the_r_number.apps.GuessTheRNumberConfig',
     'covidstats.apps.CovidstatsConfig',
-    'twatter.apps.TwatterConfig',
+    'schitter.apps.SchitterConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
