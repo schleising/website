@@ -5,15 +5,19 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="row mt-2">
+        <div class="col-sm-6">
             <h2>Schitter</h2>
-            <a type="button" class="btn btn-primary" href="{% url 'take_a_schitt' %}">Take a Schitt</a>
+        </div>
+        <div class="col-sm-6">
+            <div class="float-right">
+                <a type="button" class="btn btn-primary mb-2" href="{% url 'take_a_schitt' %}">Take a Schitt</a>
+            </div>
         </div>
     </div>
     {% if latest_schitts %}
         {% for schitt in latest_schitts %}
-            <div class="row">
+            <div class="row mb-2">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">

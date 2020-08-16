@@ -11,18 +11,26 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <form action="{% url 'log_schitt' %}" method="post">
-                {% csrf_token %}
-                <label for="name">Enter name: </label>
-                <input id="name" type="text" name="name" placeholder="Name">
-                <label for="name">Enter Schitt: </label>
-                <input id="schitt" type="text" name="schitt" placeholder="Schitt">
-                <input type="submit" value="OK">
-            </form>
+    <form action="{% url 'log_schitt' %}" method="post">
+    {% csrf_token %}
+        <div class="row">
+            <div class="col mb-2">
+                <label for="schitt">Enter Schitt: </label>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col mb-2">
+                <textarea class="form-control" rows="5" id="schitt" name="schitt" placeholder="Schitt"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <div class="float-right">
+                    <input class="btn btn-primary" type="submit" value="Schitt !!">
+                </div>
+            </div>
+        </div>
+    </form>
 
 </div>
 
