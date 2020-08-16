@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'guess_the_r_number.apps.GuessTheRNumberConfig',
     'covidstats.apps.CovidstatsConfig',
     'schitter.apps.SchitterConfig',
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'mainsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +128,6 @@ USE_TZ = True
 
 STATIC_URL  = '/static/'
 STATIC_ROOT = 'static/'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
