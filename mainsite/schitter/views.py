@@ -8,7 +8,7 @@ from .models import Schitt
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        latest_schitts = Schitt.objects.order_by('-pub_date')[:5]
+        latest_schitts = Schitt.objects.order_by('-pub_date')[:20]
         context = {'latest_schitts': latest_schitts}
         return render(request, 'schitter/index.html', context)
     
