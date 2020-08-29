@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'guess_the_r_number.apps.GuessTheRNumberConfig',
     'covidstats.apps.CovidstatsConfig',
     'schitter.apps.SchitterConfig',
+    'charts.apps.ChartsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

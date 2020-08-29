@@ -1,0 +1,21 @@
+{% extends "home/base.html" %}
+
+{% block title %}<title>Charts</title>{% endblock %}
+
+{% block head %}
+    <script src="http://cdn.bokeh.org/bokeh/release/bokeh-2.2.0.min.js"></script>
+    <script src="http://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.0.min.js"></script>
+    {{ script | safe }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col" style="height:calc(100vh - 60px)">
+            {{ div | safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
