@@ -22,6 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ssqh(1esc8=x$d3s)5)^!5=q8chriyqm1o15!p*q_ri7gcr+_)'
 
+# Secret key for Bokeh
+BOKEH_SECRET_KEY = 'QNmSO4W4tBfOwnpxTkwTLFBF9yXWyWtdeQKx8IH4DlFv'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 

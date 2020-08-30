@@ -2,3 +2,5 @@ mainsite/db.sqlite3
 **/__pycache__/
 mainsite/covidstats/static/covidstats/covid_stats.html
 mainsite/static/covidstats/covid_stats.html
+mainsite/static/.DS_Store
+.DS_Store
