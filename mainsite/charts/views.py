@@ -27,3 +27,10 @@ def Test(request):
                "server_script": server_script,
                }
     return render(request, 'charts/Test.html', context)
+
+def daily_confirmed_total_confirmed(request):
+    bokeh_server_url = "%sbokehproxy/covid-daily-confirmed-total-confirmed" % (request.build_absolute_uri(location='/'))
+    server_script = server_session(None, session_id=session_id.generate_session_id(), url=bokeh_server_url)
+    context = {"server_script": server_script,
+               }
+    return render(request, 'charts/daily-confirmed-total-confirmed.html', context)

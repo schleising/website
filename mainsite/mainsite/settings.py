@@ -31,7 +31,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     'www.schleising.net',
-    'schleising.net'
+    'schleising.net',
+    'stephensmacbook',
 ]
 
 
