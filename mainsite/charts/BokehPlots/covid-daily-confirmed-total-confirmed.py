@@ -6,11 +6,30 @@ from bokeh.layouts import column, row
 
 from CovidData import CovidData
 
-t1 = datetime.now()
+cb_height = 595
+cb_width  = 160
+
+# The country we're looking at
+default_countries = ['France',
+                     'United Kingdom',
+                     'China',
+                     'US',
+                     'Brazil',
+                     'Australia',
+                     'India',
+                     'Sweden',
+                     'Germany',
+                     'Russia',
+                     'Philippines',
+                     'Nigeria',
+                     'Saudi Arabia',
+                     'South Africa',
+                     'Mexico',
+                     'Spain']
 
 country_data = CovidData()
 
-checkboxes = CheckboxGroup(labels = country_data.menu, sizing_mode='fixed', height=650, width=200)
+checkboxes = CheckboxGroup(labels = country_data.menu, sizing_mode = 'fixed', height = cb_height, width = cb_width)
 
 plot = figure(title         = 'Mean Daily Confirmed against Total Confirmed',
               x_axis_label  = 'Total Confirmed',
@@ -31,37 +50,11 @@ tooltips = [('Country', '$name'),
 # Add the date formatter
 formatters = { '@date' : 'datetime' }
 
-# Create a hover tool
-hover_tool = HoverTool()
-
-# Set the tooltips
-hover_tool.tooltips = tooltips
-
-# Formatter for dates
-hover_tool.formatters = formatters
-
-# Add the tooltip
-plot.add_tools(hover_tool)
-
-t2 = datetime.now()
-t5 = datetime.now()
-
-for country in country_data:
-    country_df = country_data.GetDataFrame(country)
-    country_cds = ColumnDataSource(country_df)
-    country_data.glyph_dict[country] = plot.line(x = 'confirmed',
-                                                 y = 'MeanDailyConfirmed',
-                                                 source = country_cds,
-                                                 name = country,
-                                                 line_color = country_data.colour_dict[country],
-                                                 line_width = 1)
-
-    country_data.glyph_dict[country].visible = False
-
-t3 = datetime.now()
-
-print(t2 - t1)
-print(t3 - t2)
+def AddDefaultCountries():
+    for country in default_countries:
+        index = checkboxes.labels.index(country)
+        SelectCountry(None, [], [index])
+        checkboxes.active.append(index)
 
 def SelectCountry(attr, old, new):
     now_selected = list(set(new) - set(old))
@@ -69,6 +62,33 @@ def SelectCountry(attr, old, new):
 
     if now_selected:
         country = checkboxes.labels[now_selected[0]]
+
+        if country_data.glyph_dict[country] == None:
+            country_df = country_data.GetDataFrame(country)
+            country_cds = ColumnDataSource(country_df)
+            country_data.glyph_dict[country] = plot.line(x = 'confirmed',
+                                                        y = 'MeanDailyConfirmed',
+                                                        source = country_cds,
+                                                        name = country,
+                                                        line_color = country_data.colour_dict[country],
+                                                        line_width = 1)
+
+            for tool in plot.tools:
+                if type(tool).__name__ == 'HoverTool':
+                    plot.tools.remove(tool)
+
+            # Create a hover tool
+            hover_tool = HoverTool()
+
+            # Set the tooltips
+            hover_tool.tooltips = tooltips
+
+            # Formatter for dates
+            hover_tool.formatters = formatters
+
+            # Add the tooltip
+            plot.add_tools(hover_tool)
+
         country_data.glyph_dict[country].visible = True
 
     elif was_selected:
@@ -77,10 +97,12 @@ def SelectCountry(attr, old, new):
 
 checkboxes.on_change('active', SelectCountry)
 
-Column = column(checkboxes, sizing_mode = 'fixed', height=650, width=200, css_classes=['scrollable'])
+Column = column(checkboxes, sizing_mode = 'fixed', height = cb_height, width = cb_width, css_classes=['scrollable'])
 
 Row = row(Column, plot)
 
 Row.sizing_mode = 'stretch_both'
+
+AddDefaultCountries()
 
 curdoc().add_root(Row)
