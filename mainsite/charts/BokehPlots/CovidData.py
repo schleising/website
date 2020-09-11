@@ -2,7 +2,6 @@ from pathlib import Path
 import random
 
 import pandas as pd
-from requests.adapters import RetryError
 
 # Function to return a random colour
 def random_colour():
@@ -31,9 +30,7 @@ class CovidData():
             for file in self.file_list:
                 country = str(file)[8:-7]
                 self.menu.append(country)
-
                 self.colour_dict[country] = random_colour()
-
                 self.glyph_dict[country] = None
 
     def __iter__(self):
