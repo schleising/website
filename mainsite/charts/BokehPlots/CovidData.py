@@ -23,11 +23,6 @@ class CovidData():
             # List all files in the data folder
             self.file_list = sorted(list(p.glob('*.pickle')))
 
-            global_path = Path('pickles/global.pickle')
-
-            if global_path in self.file_list:
-                self.file_list.remove(global_path)
-
             self.menu = list()
             self.df_dict = dict()
             self.colour_dict = dict()
