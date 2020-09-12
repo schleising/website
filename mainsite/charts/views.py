@@ -41,3 +41,10 @@ def daily_confirmed_vs_time(request):
     context = {"server_script": server_script,
                }
     return render(request, 'charts/daily-confirmed-cases.html', context)
+
+def active_cases_vs_time(request):
+    bokeh_server_url = "%sbokehproxy/covid-active-against-time" % (request.build_absolute_uri(location='/'))
+    server_script = server_session(None, session_id=session_id.generate_session_id(), url=bokeh_server_url)
+    context = {"server_script": server_script,
+               }
+    return render(request, 'charts/active-cases.html', context)

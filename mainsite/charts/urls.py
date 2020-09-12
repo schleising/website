@@ -7,4 +7,5 @@ urlpatterns = [
     path('Test', views.Test, name='test'),
     path('daily_confirmed_total_confirmed', views.daily_confirmed_total_confirmed, name='daily_confirmed_total_confirmed'),
     path('daily_confirmed_vs_time', views.daily_confirmed_vs_time, name='daily_confirmed_vs_time'),
+    path('active_cases_vs_time', views.active_cases_vs_time, name='active_cases_vs_time'),
 ]
