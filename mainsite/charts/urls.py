@@ -9,4 +9,6 @@ urlpatterns = [
     path('daily_confirmed_vs_time', views.daily_confirmed_vs_time, name='daily_confirmed_vs_time'),
     path('active_cases_vs_time', views.active_cases_vs_time, name='active_cases_vs_time'),
     path('deaths_vs_time', views.deaths_vs_time, name='deaths_vs_time'),
+    path('total_deaths_since_first', views.total_deaths_since_first, name='total_deaths_since_first'),
+    path('daily_deaths_since_first', views.daily_deaths_since_first, name='daily_deaths_since_first'),
 ]

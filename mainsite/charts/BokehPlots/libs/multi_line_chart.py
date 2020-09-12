@@ -1,10 +1,31 @@
+import copy
+
 from bokeh.plotting import figure, curdoc, ColumnDataSource
 from bokeh.models import CheckboxGroup, HoverTool
 from bokeh.layouts import column, row
 
+import numpy as np
+
 from .CovidData import CovidData
 
 class MultiLineChart:
+    # Return the tail of a frame once the values in the requested column have got above a certain level
+    def GetTail(self, country_df_dict, index_label, column, threshold = 0):
+        # Get the first index where the data is above the threshold
+        first_index = np.argmax(country_df_dict[column] > threshold)
+
+        # Only tail if it's necessary, create a deep copy as we're adding a new column for the day count
+        if first_index > 0:
+            tailed_df = copy.deepcopy(country_df_dict.tail(-first_index))
+        else:
+            tailed_df = copy.deepcopy(country_df_dict)
+
+        # Insert the Day Count column
+        tailed_df[index_label] = np.arange(len(tailed_df))
+        
+        # Return the new Data Frame
+        return tailed_df
+
     def __init__(self,
                  chart_title,
                  x_axis_label,
@@ -14,7 +35,9 @@ class MultiLineChart:
                  x_axis_type = 'linear',
                  y_axis_type = 'linear',
                  tooltips = None,
-                 formatters = None):
+                 formatters = None,
+                 tail = False,
+                 tail_threshold = 0):
 
         cb_height = 595
         cb_width  = 160
@@ -66,6 +89,10 @@ class MultiLineChart:
 
                 if country_data.glyph_dict[country] == None:
                     country_df = country_data.GetDataFrame(country)
+
+                    if tail == True:
+                        country_df = self.GetTail(country_df, x_data, y_data, tail_threshold)
+
                     country_cds = ColumnDataSource(country_df)
                     country_data.glyph_dict[country] = plot.line(x = x_data,
                                                                  y = y_data,
