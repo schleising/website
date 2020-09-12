@@ -2,19 +2,18 @@ from libs.multi_line_chart import MultiLineChart
 
 # Setup the tooltips
 tooltips = [('Country', '$name'),
-            ('Confirmed Cases', '@confirmed'),
             ('Mean Daily Confirmed Cases', '@MeanDailyConfirmed'),
             ('Date', '@date{%F}')]
 
 # Add the date formatter
 formatters = { '@date' : 'datetime' }
 
-MultiLineChart('Mean Daily Confirmed against Total Confirmed',
-               'Total Confirmed',
+MultiLineChart('Daily Confirmed Cases',
+               'Date',
                'Mean Daily Confirmed',
-               'confirmed',
+               'date',
                'MeanDailyConfirmed',
-               x_axis_type = 'log',
+               x_axis_type = 'datetime',
                y_axis_type = 'log',
                tooltips = tooltips,
                formatters = formatters)

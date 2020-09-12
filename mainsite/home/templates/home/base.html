@@ -51,7 +51,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/covidstats">Original Covid Stats</a>
-                        <a class="dropdown-item" href="/charts/daily_confirmed_total_confirmed">New Daily Confirmed against Total Confirmed</a>
+                        <a class="dropdown-item" href="/charts/daily_confirmed_total_confirmed">Daily Confirmed against Total Confirmed</a>
+                        <a class="dropdown-item" href="/charts/daily_confirmed_vs_time">Daily Confirmed against Time</a>
                     </div>
                 </li>
             </ul>
@@ -60,7 +61,7 @@
                     Hello {{ user.username }}
                     <a class="btn btn-primary ml-2" href="/accounts/logout">Logout</a>
                 {% else %}
-                    Hello Lurker...
+                    Hello Guest...
                     <a class="btn btn-primary ml-2" href="/accounts/login">Login</a>
                 {% endif %}
             </div>

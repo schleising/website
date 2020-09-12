@@ -12,7 +12,9 @@ class MultiLineChart:
                  x_data,
                  y_data,
                  x_axis_type = 'linear',
-                 y_axis_type = 'linear'):
+                 y_axis_type = 'linear',
+                 tooltips = None,
+                 formatters = None):
 
         cb_height = 595
         cb_width  = 160
@@ -48,15 +50,6 @@ class MultiLineChart:
                       active_drag   = 'pan',
                       active_scroll = 'wheel_zoom',
                       sizing_mode   = 'stretch_both')
-
-        # Setup the tooltips
-        tooltips = [('Country', '$name'),
-                    ('Confirmed Cases', '@' + x_data),
-                    ('Mean Daily Confirmed Cases', '@' + y_data),
-                    ('Date', '@date{%F}')]
-
-        # Add the date formatter
-        formatters = { '@date' : 'datetime' }
 
         def AddDefaultCountries():
             for country in default_countries:
