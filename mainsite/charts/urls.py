@@ -8,4 +8,5 @@ urlpatterns = [
     path('daily_confirmed_total_confirmed', views.daily_confirmed_total_confirmed, name='daily_confirmed_total_confirmed'),
     path('daily_confirmed_vs_time', views.daily_confirmed_vs_time, name='daily_confirmed_vs_time'),
     path('active_cases_vs_time', views.active_cases_vs_time, name='active_cases_vs_time'),
+    path('deaths_vs_time', views.deaths_vs_time, name='deaths_vs_time'),
 ]
