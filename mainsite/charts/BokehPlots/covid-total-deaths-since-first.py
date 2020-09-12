@@ -3,7 +3,11 @@ from libs.multi_line_chart import MultiLineChart
 # Setup the tooltips
 tooltips = [('Country', '$name'),
             ('Deaths', '@deaths'),
-            ('Day Count', '@DayCount')]
+            ('Day Count', '@DayCount'),
+            ('Date', '@date{%F}')]
+
+# Add the date formatter
+formatters = { '@date' : 'datetime' }
 
 MultiLineChart('Total Deaths Since First',
                'Day',
@@ -13,5 +17,6 @@ MultiLineChart('Total Deaths Since First',
                x_axis_type = 'linear',
                y_axis_type = 'log',
                tooltips = tooltips,
+               formatters = formatters,
                tail = True,
                tail_threshold = 3)
