@@ -7,7 +7,7 @@ import pandas as pd
 def random_colour():
     return tuple([random.randrange(255), random.randrange(255), random.randrange(255)])
 
-class CovidData():
+class CovidData:
 
     def __init__(self):
         # Initialise a random seed so we get the same colours every time
