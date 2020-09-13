@@ -83,3 +83,10 @@ def deaths_against_time_bar(request):
     context = {"server_script": server_script,
                }
     return render(request, 'charts/deaths-against-time-bar.html', context)
+
+def confirmed_against_time_bar(request):
+    bokeh_server_url = "%sbokehproxy/covid-confirmed-against-time-bar" % (request.build_absolute_uri(location='/'))
+    server_script = server_session(None, session_id=session_id.generate_session_id(), url=bokeh_server_url)
+    context = {"server_script": server_script,
+               }
+    return render(request, 'charts/confirmed-against-time-bar.html', context)
