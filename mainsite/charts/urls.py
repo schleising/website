@@ -11,4 +11,5 @@ urlpatterns = [
     path('deaths_vs_time', views.deaths_vs_time, name='deaths_vs_time'),
     path('total_deaths_since_first', views.total_deaths_since_first, name='total_deaths_since_first'),
     path('daily_deaths_since_first', views.daily_deaths_since_first, name='daily_deaths_since_first'),
+    path('country_stats', views.country_stats, name='country_stats'),
 ]

@@ -69,3 +69,10 @@ def daily_deaths_since_first(request):
     context = {"server_script": server_script,
                }
     return render(request, 'charts/daily-deaths-since-first.html', context)
+
+def country_stats(request):
+    bokeh_server_url = "%sbokehproxy/covid-country-stats" % (request.build_absolute_uri(location='/'))
+    server_script = server_session(None, session_id=session_id.generate_session_id(), url=bokeh_server_url)
+    context = {"server_script": server_script,
+               }
+    return render(request, 'charts/country-stats.html', context)
