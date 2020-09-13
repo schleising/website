@@ -1,6 +1,8 @@
+import copy
 from pathlib import Path
 import random
 
+import numpy as np
 import pandas as pd
 
 # Function to return a random colour
@@ -45,3 +47,23 @@ class CovidData:
             self.df_dict[country] = pd.read_pickle('pickles/' + country + '.pickle')
 
         return self.df_dict[country]
+
+    # Return the tail of a frame once the values in the requested column have got above a certain level
+    def GetTail(self, country, index_label, column, threshold = 0):
+
+        country_df = self.GetDataFrame(country)
+
+        # Get the first index where the data is above the threshold
+        first_index = np.argmax(country_df[column] > threshold)
+
+        # Only tail if it's necessary, create a deep copy as we're adding a new column for the day count
+        if first_index > 0:
+            tailed_df = copy.deepcopy(country_df.tail(-first_index))
+        else:
+            tailed_df = copy.deepcopy(country_df)
+
+        # Insert the Day Count column
+        tailed_df[index_label] = np.arange(len(tailed_df))
+        
+        # Return the new Data Frame
+        return tailed_df
