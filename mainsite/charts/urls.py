@@ -12,4 +12,5 @@ urlpatterns = [
     path('total_deaths_since_first', views.total_deaths_since_first, name='total_deaths_since_first'),
     path('daily_deaths_since_first', views.daily_deaths_since_first, name='daily_deaths_since_first'),
     path('country_stats', views.country_stats, name='country_stats'),
+    path('deaths_against_time_bar', views.deaths_against_time_bar, name='deaths_against_time_bar'),
 ]
