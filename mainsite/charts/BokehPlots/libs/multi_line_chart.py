@@ -56,7 +56,6 @@ class MultiLineChart:
         def AddDefaultCountries():
             for country in default_countries:
                 index = checkboxes.labels.index(country)
-                SelectCountry(None, [], [index])
                 checkboxes.active.append(index)
 
         def SelectCountry(attr, old, new):
