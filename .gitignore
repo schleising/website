@@ -5,3 +5,4 @@ mainsite/static/covidstats/covid_stats.html
 mainsite/static/.DS_Store
 .DS_Store
 mainsite/charts/BokehPlots/pickles
+mainsite/charts/BokehPlots/geodata/geodata.pickle

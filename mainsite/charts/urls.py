@@ -14,4 +14,6 @@ urlpatterns = [
     path('country_stats', views.country_stats, name='country_stats'),
     path('deaths_against_time_bar', views.deaths_against_time_bar, name='deaths_against_time_bar'),
     path('confirmed_against_time_bar', views.confirmed_against_time_bar, name='confirmed_against_time_bar'),
+    path('confirmed_map_plot', views.confirmed_map_plot, name='confirmed_map_plot'),
+    path('confirmed_pc_map_plot', views.confirmed_pc_map_plot, name='confirmed_pc_map_plot'),
 ]
