@@ -69,7 +69,7 @@ class BarChart:
         def AddDefaultCountries():
             country_number = 0
 
-            for country in default_countries:
+            for country in sorted(default_countries):
                 index = checkboxes.labels.index(country)
                 checkboxes.active.append(index)
 
@@ -113,7 +113,7 @@ class BarChart:
                 country = checkboxes.labels[was_selected[0]]
                 country_data.glyph_dict[country].visible = False
 
-            for selection in new:
+            for selection in sorted(new):
                 country = checkboxes.labels[selection]
 
                 # Shift the dates by the proportion of a day, minus one as world not included
