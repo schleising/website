@@ -15,4 +15,5 @@ urlpatterns = [
     path('confirmed_against_time_bar', views.confirmed_against_time_bar, name='confirmed_against_time_bar'),
     path('confirmed_map_plot', views.confirmed_map_plot, name='confirmed_map_plot'),
     path('confirmed_pc_map_plot', views.confirmed_pc_map_plot, name='confirmed_pc_map_plot'),
+    path('confirmed_uk_map_plot', views.confirmed_uk_map_plot, name='confirmed_uk_map_plot'),
 ]

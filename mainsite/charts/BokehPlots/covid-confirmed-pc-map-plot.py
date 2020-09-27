@@ -1,3 +1,7 @@
 from libs.choropleth_chart import ChoroplethChart
 
-choropleth = ChoroplethChart('Confirmed PC Map Plot', 'Confirmed per Capita', 'ConfPerCap', 'Blues', 'blue')
+# Setup the tooltips
+tooltips = [('Country', '@Country'),
+            ('Confirmed per Capita', '@ConfPerCap')]
+
+choropleth = ChoroplethChart('Confirmed PC Map Plot', tooltips, 'ConfPerCap', 'Blues', 'blue')

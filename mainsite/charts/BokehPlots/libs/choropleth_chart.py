@@ -1,18 +1,24 @@
 from bokeh.plotting import figure, curdoc
 from bokeh.models import HoverTool, LogColorMapper, ColorBar, GeoJSONDataSource, NumeralTickFormatter, LogTicker
-from bokeh.tile_providers import WIKIMEDIA, get_provider
+from bokeh.tile_providers import CARTODBPOSITRON, get_provider
 from bokeh.palettes import brewer
 
 import pandas as pd
+from pandas.io.parsers import count_empty_vals
 
 class ChoroplethChart:
-    def __init__(self, title, tooltip_title, column, colour, line_colour):
+    def __init__(self, title, tooltips, column, colour, line_colour, country_data = None):
         self.title = title
         self.column = column
-        self.tooltip_title = tooltip_title
+        self.tooltips = tooltips
         self.colour = colour
         self.line_colour = line_colour
-        self.country_data = pd.read_pickle('geodata/geodata.pickle')
+
+        if type(country_data).__name__ == 'NoneType':
+            self.country_data = pd.read_pickle('geodata/geodata.pickle')
+        else:
+            self.country_data = country_data
+
         self.ConfirmedMapPlot()
 
     def AddToolTip(self, plot, tooltips, formatters = None):
@@ -33,7 +39,7 @@ class ChoroplethChart:
     # Create a map plot of latest confirmed cases
     def ConfirmedMapPlot(self):
         # Get the tile provider
-        tile_provider = get_provider(WIKIMEDIA)
+        tile_provider = get_provider(CARTODBPOSITRON)
 
         # Create the plot
         plot = figure(x_axis_type="mercator", 
@@ -89,11 +95,7 @@ class ChoroplethChart:
         # Add the colour bar
         plot.add_layout(color_bar, 'right')
 
-        # Setup the tooltips
-        tooltips = [('Country', '@Country'),
-                    (self.tooltip_title, '@' + self.column)]
-
         # Add the tooltip
-        self.AddToolTip(plot, tooltips)
+        self.AddToolTip(plot, self.tooltips)
 
         curdoc().add_root(plot)

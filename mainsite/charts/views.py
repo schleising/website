@@ -104,3 +104,10 @@ def confirmed_pc_map_plot(request):
     context = {"server_script": server_script,
                }
     return render(request, 'charts/confirmed-pc-map-plot.html', context)
+
+def confirmed_uk_map_plot(request):
+    bokeh_server_url = "%sbokehproxy/covid-confirmed-uk-map-plot" % (request.build_absolute_uri(location='/'))
+    server_script = server_session(None, session_id=session_id.generate_session_id(), url=bokeh_server_url)
+    context = {"server_script": server_script,
+               }
+    return render(request, 'charts/confirmed-uk-map-plot.html', context)
