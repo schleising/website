@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'covidstats.apps.CovidstatsConfig',
     'schitter.apps.SchitterConfig',
     'charts.apps.ChartsConfig',
+    'LeafletMaps.apps.LeafletmapsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

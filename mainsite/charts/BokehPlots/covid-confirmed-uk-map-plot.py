@@ -35,6 +35,8 @@ merged_df.crs = 'epsg:4326'
 # Tell GeoPandas that the column named geometry contains the points describing the countries
 merged_df.set_geometry('geometry')
 
+merged_df.to_file('uk_covid_data.geojson', driver='GeoJSON')
+
 # Setup the tooltips
 tooltips = [('Area', '@areaName'),
             ('Confirmed', '@cumCasesByPublishDate')]
