@@ -25,7 +25,7 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = '<h4>Upper Tier Unitary Authority</h4>' +  (props ?
         '<b>' + props.ctyua19nm + '</b>'
-        : 'Hover over an Upper Tier Unitary Authority');
+        : 'Tap or Hover over an Upper Tier Unitary Authority');
 };
 
 info.addTo(mymap);
