@@ -37,7 +37,7 @@ function drawMap(gjf) {
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
         this._div.innerHTML = '<h4>Upper Tier Unitary Authority</h4>' +  (props ?
-            '<b>' + props.ctyua19nm + '</b><br/>' + props.cumCasesByPublishDate + ' Cases'
+            `<b>${props.ctyua19nm}</b><br/>${props.cumCasesByPublishDate} Cases`
             : 'Tap or Hover over an Upper Tier Unitary Authority');
     };
 
