@@ -7,7 +7,7 @@ xmlhttp.onreadystatechange = function() {
     }
 };
 
-xmlhttp.open("GET", "http://www.schleising.net/static/LeafletMaps/uk_covid_data.geojson", true);
+xmlhttp.open("GET", "https://www.schleising.net/static/LeafletMaps/uk_covid_data.geojson", true);
 xmlhttp.send();
 
 function drawMap(gjf) {
