@@ -18,10 +18,13 @@
     <div class="container-fluid">
         <div class="row">
             <div id="mapid">
-                {% load static %}
-                <script type="text/javascript" src="{% static 'LeafletMaps/maps.js' %}"></script>
             </div>
         </div>
     </div>
+
+    {{ geo_data|json_script:"geo_data" }}
+
+    {% load static %}
+    <script type="text/javascript" src="{% static 'LeafletMaps/maps.js' %}"></script>
 
 {% endblock %}

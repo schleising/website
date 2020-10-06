@@ -1,14 +1,18 @@
-var xmlhttp = new XMLHttpRequest();
+// var xmlhttp = new XMLHttpRequest();
 
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var geojsonFeature = JSON.parse(this.responseText);
-        drawMap(geojsonFeature);
-    }
-};
+// xmlhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//         var geojsonFeature = JSON.parse(this.responseText);
+//         drawMap(geojsonFeature);
+//     }
+// };
 
-xmlhttp.open("GET", "https://www.schleising.net/static/LeafletMaps/uk_covid_data.geojson", true);
-xmlhttp.send();
+// xmlhttp.open("GET", "http://localhost:8001/static/LeafletMaps/uk_covid_data.geojson", true);
+// xmlhttp.send();
+
+const geojsonFeature = JSON.parse(document.getElementById('geo_data').textContent);
+
+drawMap(geojsonFeature)
 
 function drawMap(gjf) {
     var mymap = L.map('mapid').setView([54.003644, -2.547859], 5);
