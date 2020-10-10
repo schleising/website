@@ -25,7 +25,7 @@ function drawMap(gjf, graduations) {
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
         this._div.innerHTML = '<h4>Upper Tier Unitary Authority</h4>' +  (props ?
-            `<b>${props.ctyua19nm}</b><br/>${props.cumCasesByPublishDate} Cases<br/>${props.ConfPerCap.toFixed(0)} Cases per 10,000 People`
+            `<b>${props.ctyua19nm}</b><br/>${props.cumCasesByPublishDate} Cases<br/>${props.ConfPerCap.toFixed(0)} Cases per 10,000 People<br/>Last Updated on ${props.date}`
             : 'Tap or Hover over an Upper Tier Unitary Authority');
     };
 
