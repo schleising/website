@@ -23,6 +23,7 @@
     </div>
 
     {{ geo_data|json_script:"geo_data" }}
+    <script id="graduations" type="application/json">{{ graduations }}</script>
 
     {% load static %}
     <script type="text/javascript" src="{% static 'LeafletMaps/maps.js' %}"></script>

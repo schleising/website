@@ -6,3 +6,4 @@ mainsite/static/.DS_Store
 .DS_Store
 mainsite/charts/BokehPlots/pickles
 mainsite/charts/BokehPlots/geodata/geodata.pickle
+mainsite/uk_covid_data.geojson

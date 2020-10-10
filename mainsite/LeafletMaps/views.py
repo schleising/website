@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 import json
 import geopandas
+import numpy as np
+import pandas as pd
 
 from uk_covid19 import Cov19API
 
@@ -33,18 +35,35 @@ def uk_cumulative_cases(request):
 
     df = api.get_dataframe()
 
+    pop_df = pd.read_csv('LeafletMaps/data/uk_population.csv')
+
+    pop_merged_df = df.merge(pop_df, left_on='areaCode', right_on='Code')
+
     geo_df = geopandas.read_file('LeafletMaps/data/Counties_and_Unitary_Authorities__December_2019__Boundaries_UK_BUC.geojson')
 
-    merged_df = geopandas.GeoDataFrame(df.merge(geo_df, right_on='ctyua19cd', left_on='areaCode'))
+    geo_merged_df = geopandas.GeoDataFrame(pop_merged_df.merge(geo_df, left_on='areaCode', right_on='ctyua19cd'))
 
     # Set the coordinate reference system EPSG:4326 (WGS84 Lat/Long)
-    merged_df.crs = 'epsg:4326'
+    geo_merged_df.crs = 'epsg:4326'
 
     # Tell GeoPandas that the column named geometry contains the points describing the countries
-    merged_df.set_geometry('geometry')
+    geo_merged_df.set_geometry('geometry')
 
-    geo_data = merged_df.to_file('uk_covid_data.geojson', driver='GeoJSON')
-    with open('uk_covid_data.geojson') as json_file:
+    geo_merged_df['ConfPerCap'] = (geo_merged_df['cumCasesByPublishDate'] / geo_merged_df['Population']) * 10000
+
+    geo_merged_df.to_file('uk_covid_data.geojson', driver='GeoJSON')
+
+    min_cpc = np.math.log(min(geo_merged_df['ConfPerCap']))
+    max_cpc = np.math.log(max(geo_merged_df['ConfPerCap']))
+
+    graduations_ndarray = np.linspace(min_cpc, max_cpc, 7)
+    graduations = [np.math.exp(x) for x in graduations_ndarray]
+
+    with open('uk_covid_data.geojson', 'r') as json_file:
         geo_data = json.load(json_file)
 
-    return render(request, 'LeafletMaps/uk_cumulative_cases.html', context={'geo_data' : geo_data})
+    context = {}
+    context['geo_data'] = geo_data
+    context['graduations'] = graduations
+
+    return render(request, 'LeafletMaps/uk_cumulative_cases.html', context=context)

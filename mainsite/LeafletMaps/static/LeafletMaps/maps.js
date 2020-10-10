@@ -1,20 +1,4 @@
-// var xmlhttp = new XMLHttpRequest();
-
-// xmlhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//         var geojsonFeature = JSON.parse(this.responseText);
-//         drawMap(geojsonFeature);
-//     }
-// };
-
-// xmlhttp.open("GET", "http://localhost:8001/static/LeafletMaps/uk_covid_data.geojson", true);
-// xmlhttp.send();
-
-const geojsonFeature = JSON.parse(document.getElementById('geo_data').textContent);
-
-drawMap(geojsonFeature)
-
-function drawMap(gjf) {
+function drawMap(gjf, graduations) {
     var mymap = L.map('mapid').setView([54.003644, -2.547859], 5);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -41,7 +25,7 @@ function drawMap(gjf) {
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
         this._div.innerHTML = '<h4>Upper Tier Unitary Authority</h4>' +  (props ?
-            `<b>${props.ctyua19nm}</b><br/>${props.cumCasesByPublishDate} Cases`
+            `<b>${props.ctyua19nm}</b><br/>${props.cumCasesByPublishDate} Cases<br/>${props.ConfPerCap.toFixed(0)} Cases per 10,000 People`
             : 'Tap or Hover over an Upper Tier Unitary Authority');
     };
 
@@ -67,14 +51,24 @@ function drawMap(gjf) {
 
     // legend.addTo(mymap);
 
+    function getColor(d) {
+        return d > graduations[6] ? '#08519c' :
+               d > graduations[5] ? '#08519c' :
+               d > graduations[4] ? '#3182bd' :
+               d > graduations[3] ? '#6baed6' :
+               d > graduations[2] ? '#9ecae1' :
+               d > graduations[1] ? '#c6dbef' :
+               d > graduations[0] ? '#eff3ff' : '#eff3ff';
+    }
+
     function style(feature) {
         return {
-            fillColor: "dodgerblue",
+            fillColor: getColor(feature.properties.ConfPerCap),
             weight: 1,
             opacity: 1,
             color: 'blue',
             dashArray: '3',
-            fillOpacity: 0.5
+            fillOpacity: 0.7
         };
     }
 
@@ -112,3 +106,8 @@ function drawMap(gjf) {
         });
     }
 }
+
+const geojsonFeature = JSON.parse(document.getElementById('geo_data').textContent);
+const graduations      = JSON.parse(document.getElementById('graduations').textContent);
+
+drawMap(geojsonFeature, graduations);
