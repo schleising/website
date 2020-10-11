@@ -3,7 +3,9 @@
 {% block title %}<title>Daily New Cases in Brighton and Hove</title>{% endblock %}
 
 {% block head %}
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    {% load static %}
+    <script src="{% static 'highcharts/highcharts.js' %}"></script>
+    <script src="{% static 'highcharts/themes/sunset.js' %}"></script>
 {% endblock %}
 
 {% block content %}
