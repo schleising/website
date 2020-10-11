@@ -1,0 +1,28 @@
+{% extends "home/base.html" %}
+
+{% block title %}<title>High Charts</title>{% endblock %}
+
+{% block head %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div id="chart_div" style="width: 100%; height: 90%; position: absolute;">
+            </div>
+        </div>
+    </div>
+
+    <script id="options" type="application/json">{{ options|safe }}</script>
+
+    <script>
+        const options = JSON.parse(document.getElementById('options').textContent);
+
+        document.addEventListener('DOMContentLoaded', function () {
+                var myChart = Highcharts.chart('chart_div', options);
+        });
+
+    </script>
+
+{% endblock %}

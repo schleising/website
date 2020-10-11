@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'schitter.apps.SchitterConfig',
     'charts.apps.ChartsConfig',
     'LeafletMaps.apps.LeafletmapsConfig',
+    'highcharts.apps.HighchartsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
