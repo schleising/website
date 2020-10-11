@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <script id="options" type="application/json">{{ options|safe }}</script>
+    {{ options|json_script:"options" }}
 
     <script>
         const options = JSON.parse(document.getElementById('options').textContent);

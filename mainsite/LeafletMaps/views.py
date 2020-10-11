@@ -51,19 +51,14 @@ def uk_cumulative_cases(request):
 
     geo_merged_df['ConfPerCap'] = (geo_merged_df['cumCasesByPublishDate'] / geo_merged_df['Population']) * 10000
 
-    geo_merged_df.to_file('uk_covid_data.geojson', driver='GeoJSON')
-
     min_cpc = np.math.log(min(geo_merged_df['ConfPerCap']))
     max_cpc = np.math.log(max(geo_merged_df['ConfPerCap']))
 
     graduations_ndarray = np.linspace(min_cpc, max_cpc, 7)
     graduations = [np.math.exp(x) for x in graduations_ndarray]
 
-    with open('uk_covid_data.geojson', 'r') as json_file:
-        geo_data = json.load(json_file)
-
     context = {}
-    context['geo_data'] = geo_data
+    context['geo_data'] = json.loads(geo_merged_df.to_json())
     context['graduations'] = graduations
 
     return render(request, 'LeafletMaps/uk_cumulative_cases.html', context=context)
