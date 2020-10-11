@@ -18,6 +18,9 @@ cases = {
 
 # Create your views here.
 def index(request):
+    return NewCasesBarChart(request)
+
+def NewCasesBarChart(request):
     api = Cov19API(
         filters=brighton_and_hove,
         structure=cases,
@@ -55,4 +58,4 @@ def index(request):
     context = {}
     context['options'] = options.options_dict
 
-    return render(request, 'highcharts/index.html', context)
+    return render(request, 'highcharts/new_cases_bar_chart.html', context)

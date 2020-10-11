@@ -1,6 +1,6 @@
 {% extends "home/base.html" %}
 
-{% block title %}<title>High Charts</title>{% endblock %}
+{% block title %}<title>Daily New Cases in Brighton and Hove</title>{% endblock %}
 
 {% block head %}
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -9,7 +9,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div id="chart_div" style="width: 100%; height: 90%; position: absolute;">
+            <div id="chart_div" style="width: 100%; height: calc(100% - 54px); position: absolute;">
             </div>
         </div>
     </div>
