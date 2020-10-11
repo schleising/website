@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import json
+import copy
 
 @dataclass
 class Series:
@@ -28,8 +29,6 @@ class Options:
     options_dict['legend'] = {}
     options_dict['legend']['layout']        = 'horizontal'
 
-    series = Series()
-
     def SetTitle(self, text):
         self.options_dict['title']['text'] = text
 
@@ -43,11 +42,11 @@ class Options:
         self.options_dict['series'].clear()
 
     def AddSeries(self, name, type, data):
-        series_dict = self.series.series_dict
+        series_dict = Series().series_dict
         series_dict['name'] = name
         series_dict['type'] = type
         series_dict['data'] = data
-        self.options_dict['series'].append(series_dict)
+        self.options_dict['series'].append(copy.deepcopy(series_dict))
 
     def SetCategories(self, categories):
         self.options_dict['xAxis']['categories'] = categories
