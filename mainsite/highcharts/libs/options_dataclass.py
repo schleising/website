@@ -26,9 +26,7 @@ class Options:
     options_dict['yAxis']['title']['text'] = 'y-axis title'
 
     options_dict['legend'] = {}
-    options_dict['legend']['layout']        = 'vertical'
-    options_dict['legend']['align']         = 'right'
-    options_dict['legend']['verticalAlign'] = 'middle'
+    options_dict['legend']['layout']        = 'horizontal'
 
     series = Series()
 
