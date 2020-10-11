@@ -1,4 +1,4 @@
-#mapid {position: absolute; left: 0px; right: 0px; top: 56px; bottom: 0px; }
+#mapid {position: absolute; width: 100%; height: calc(100% - 54px); }
 
 .info {
     padding: 6px 8px;
