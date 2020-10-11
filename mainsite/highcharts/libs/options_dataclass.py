@@ -52,10 +52,10 @@ class Options:
         self.options_dict['xAxis']['categories'] = categories
 
     def __str__(self) -> str:
-        return f'{self.options_dict}'.replace('\'', '"')
+        return f'{self.options_dict}'
 
     def to_json(self):
-        return json.dumps(f'{self.options_dict}')
+        return json.dumps(self.options_dict)
 
     def save(self, filename):
         with open(filename, 'w') as file:

@@ -53,6 +53,6 @@ def index(request):
     options.SetCategories(date)
 
     context = {}
-    context['options'] = options.__str__()
+    context['options'] = options.to_json()
 
     return render(request, 'highcharts/index.html', context)
