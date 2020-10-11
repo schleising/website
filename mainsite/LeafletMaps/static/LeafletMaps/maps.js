@@ -24,8 +24,8 @@ function drawMap(gjf, graduations) {
 
     // method that we will use to update the control based on feature properties passed
     info.update = function (props) {
-        this._div.innerHTML = '<h4>Upper Tier Unitary Authority</h4>' +  (props ?
-            `<b>${props.ctyua19nm}</b><br/>${props.cumCasesByPublishDate} Cases<br/>${props.ConfPerCap.toFixed(0)} Cases per 10,000 People<br/>Last Updated on ${props.date}`
+        this._div.innerHTML = '<h4>Upper Tier Local Authority</h4>' +  (props ?
+            `<b>${props.ctyua19nm}</b><br/><b style="color: dodgerblue">${props.cumCasesByPublishDate}</b> Cases<br/><b style="color: dodgerblue">${props.ConfPerCap.toFixed(0)}</b> Cases per 100,000 People<br/>Last Updated on <b style="color: dodgerblue">${props.date}</b>`
             : 'Tap or Hover over an Upper Tier Unitary Authority');
     };
 
@@ -108,6 +108,6 @@ function drawMap(gjf, graduations) {
 }
 
 const geojsonFeature = JSON.parse(document.getElementById('geo_data').textContent);
-const graduations      = JSON.parse(document.getElementById('graduations').textContent);
+const graduations    = JSON.parse(document.getElementById('graduations').textContent);
 
 drawMap(geojsonFeature, graduations);

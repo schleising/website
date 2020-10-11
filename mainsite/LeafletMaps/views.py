@@ -49,7 +49,7 @@ def uk_cumulative_cases(request):
     # Tell GeoPandas that the column named geometry contains the points describing the countries
     geo_merged_df.set_geometry('geometry')
 
-    geo_merged_df['ConfPerCap'] = (geo_merged_df['cumCasesByPublishDate'] / geo_merged_df['Population']) * 10000
+    geo_merged_df['ConfPerCap'] = (geo_merged_df['cumCasesByPublishDate'] / geo_merged_df['Population']) * 100000
 
     min_cpc = np.math.log(min(geo_merged_df['ConfPerCap']))
     max_cpc = np.math.log(max(geo_merged_df['ConfPerCap']))
