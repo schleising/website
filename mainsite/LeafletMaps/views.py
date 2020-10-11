@@ -23,7 +23,7 @@ cases_and_deaths = {
 
 # Create your views here.
 def index(request):
-    return render(request, 'LeafletMaps/index.html')
+    return uk_cumulative_cases(request)
 
 def uk_cumulative_cases(request):
 
