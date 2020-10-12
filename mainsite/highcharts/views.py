@@ -47,7 +47,6 @@ def NewCasesBarChart(request):
 
     options = Options()
 
-    options.ClearSeries()
     options.SetTitle('Brighton and Hove New Daily Cases')
     options.SetxAxisTitle('Date')
     options.SetyAxisTitle('New Cases')

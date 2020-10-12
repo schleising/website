@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 import json
-import copy
 
 def initialise_series():
     series_dict = {}
@@ -66,16 +65,13 @@ class Options:
     def SetyAxisType(self, type):
         self.options_dict['yAxis']['type'] = type
 
-    def ClearSeries(self):
-        self.options_dict['series'].clear()
-
     def AddSeries(self, name, type, data):
         series = Series()
         series_dict = series.series_dict
         series_dict['name'] = name
         series_dict['type'] = type
         series_dict['data'] = data
-        self.options_dict['series'].append(copy.deepcopy(series_dict))
+        self.options_dict['series'].append(series_dict)
 
     def SetCategories(self, categories):
         self.options_dict['xAxis']['categories'] = categories
