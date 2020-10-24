@@ -5,4 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='highcharts'),
     path('new_cases_bar_chart', views.NewCasesBarChart, name='new_cases_bar_chart'),
+    path('global_new_cases_bar_chart', views.NewCasesAgainstTime, name='global_new_cases_bar_chart'),
+    path('add_series', views.AddSeries, name='add_series'),
 ]
