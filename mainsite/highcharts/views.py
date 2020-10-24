@@ -50,6 +50,8 @@ def NewCasesBarChart(request):
 def NewCasesAgainstTime(request):
     json_data = GetGlobalData()
 
+    countries = [country for country in json_data]
+
     df = pd.DataFrame(json_data['United Kingdom'])
 
     df['daily_confirmed']    = df['confirmed'].diff()
@@ -76,23 +78,23 @@ def NewCasesAgainstTime(request):
     options.SetxAxisTitle('Date')
     options.SetyAxisTitle('New Cases')
     options.SetyAxisType('logarithmic')
-    # options.AddSeries('Daily Cases', 'column', daily_cases)
-    options.AddSeries('UK Average Daily Cases', 'line', average_daily_cases)
+    options.AddSeries('United Kingdom', 'line', average_daily_cases)
     options.SetCategories(date)
 
     context = {}
     context['options'] = options.options_dict
+    context['countries'] = countries
 
-    return render(request, 'highcharts/uk_new_cases_bar_chart.html', context)
+    return render(request, 'highcharts/global_new_cases.html', context)
 
-def AddSeries(request : WSGIRequest):
-    c_dict = json.loads(request.body)
-    
+def CheckboxClicked(request : WSGIRequest):
+    checkbox_dict = json.loads(request.body)
+
     json_data = GetGlobalData()
 
-    df = pd.DataFrame(json_data[c_dict['name']])
+    df = pd.DataFrame(json_data[checkbox_dict['name']])
 
-    df['daily_confirmed']    = df['confirmed'].diff()
+    df['daily_confirmed'] = df['confirmed'].diff()
 
     # Use DataFrame.rolling() to generate running average data
     rolling = df.rolling(7)
@@ -108,7 +110,7 @@ def AddSeries(request : WSGIRequest):
     average_daily_cases = df['MeanDailyConfirmed'].to_list()
 
     series = Series()
-    series.series_dict['name'] = f"{c_dict['name']} Average Daily Cases"
+    series.series_dict['name'] = f"{checkbox_dict['name']}"
     series.series_dict['type'] = 'line'
     series.series_dict['data'] = average_daily_cases
 

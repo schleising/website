@@ -10,48 +10,20 @@
         <div class="row">
             {% block countries %}
             {% endblock %}
-            <div class="col-md-10" id="chart_div" style="width: 100%; height: calc(100% - 54px); position: relative;">
+            <div class="col-sm-10" id="chart_div" style="width: 100vw; height: calc(100vh - 56px);">
             </div>
         </div>
-        <div class="row">
-            <button onclick="buttonClicked()">Click Me</button>
-        </div>
     </div>
-    <div id="id01"></div>
 
     {{ options|json_script:"options" }}
 
-    <script>
+    <script type="text/javascript">
         const options = JSON.parse(document.getElementById('options').textContent);
         var myChart;
 
         document.addEventListener('DOMContentLoaded', function () {
-                myChart = Highcharts.chart('chart_div', options);
+            myChart = Highcharts.chart('chart_div', options);
         });
-
-        function buttonClicked() {
-            var xmlhttp = new XMLHttpRequest();
-            var url = "/highcharts/add_series";
-            var token = "{{ csrf_token }}";
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var jsn = this.responseText;
-                    myFunction(jsn);
-                }
-            };
-            xmlhttp.open("POST", url, true);
-            var country = {name:"Spain"}
-            xmlhttp.setRequestHeader("X-CSRFToken", token); 
-            xmlhttp.send(JSON.stringify(country));
-
-            console.log("Request Sent");
-
-            function myFunction(jsn) {
-                const options = JSON.parse(jsn);
-                myChart.addSeries(options, true);
-            }
-        }
-        </script>
+    </script>
     
 {% endblock %}

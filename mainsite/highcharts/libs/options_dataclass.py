@@ -3,9 +3,10 @@ import json
 
 def initialise_series():
     series_dict = {}
-    series_dict['name'] = 'Series'
-    series_dict['type'] = 'line'
-    series_dict['data'] = []
+    series_dict['name']      = 'Series'
+    series_dict['type']      = 'line'
+    series_dict['lineWidth'] = 1
+    series_dict['data']      = []
 
     return series_dict
 
@@ -38,8 +39,8 @@ def initialise_options():
     options_dict['yAxis']['title']         = {}
     options_dict['yAxis']['title']['text'] = 'y-axis title'
 
-    options_dict['legend']           = {}
-    options_dict['legend']['layout'] = 'horizontal'
+    options_dict['legend']            = {}
+    options_dict['legend']['enabled'] = False
     
     options_dict['tooltip']                    = {}
     options_dict['tooltip']['followTouchMove'] = False

@@ -1,0 +1,87 @@
+{% extends "highcharts/highcharts_base.html" %}
+
+{% block title %}<title>Daily New Cases</title>{% endblock %}
+
+{% block countries %}
+    <div class="col-sm-2" id="checkbox_div" style="height: calc(100vh - 56px); overflow: auto;">
+        {% for country in countries %}
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" 
+                   class="custom-control-input" 
+                   id="{{country}}" 
+                   name="{{country}}" 
+                   onclick="checkboxClicked('{{country}}')">
+            <label class="custom-control-label" for="{{country}}">{{country}}</label>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        for (current_series of myChart.series) {
+            checkbox = document.getElementById(current_series.name);
+            checkbox.checked = true;
+        }
+    });
+
+    function checkboxClicked(country) {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "/highcharts/checkbox_clicked";
+        var token = "{{ csrf_token }}";
+
+        var checkbox = document.getElementById(country);
+        var selected = checkbox.checked;
+
+        if (selected == true) {
+            var present = false;
+            for (current_series of myChart.series) {
+                if (current_series.name == country) {
+                    current_series.setVisible(true);
+                    present = true
+                }
+            }
+
+            if (present == false) {
+                var json_msg = {name:country, checked:selected};
+
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var jsn = this.responseText;
+                        myFunction(jsn);
+                    }
+                };
+                xmlhttp.open("POST", url, true);
+                xmlhttp.setRequestHeader("X-CSRFToken", token); 
+                xmlhttp.send(JSON.stringify(json_msg));
+            }
+        } else {
+            for (current_series of myChart.series) {
+                if (current_series.name == country) {
+                    current_series.setVisible(false);
+                }
+            }
+        }
+
+        function myFunction(jsn) {
+            const series = JSON.parse(jsn);
+            var checkbox = document.getElementById(series.name);
+            var selected = checkbox.checked;
+
+            if (selected == true) {
+                var present = false;
+
+                for (const current_series of myChart.series) {
+                    if (current_series.name == series.name) {
+                        present = true;
+                    }
+                }
+                if (present == false) {
+                    myChart.addSeries(series, true);
+                }
+            }
+        };
+    };
+</script>
+{% endblock %}
