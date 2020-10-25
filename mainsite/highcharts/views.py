@@ -74,7 +74,7 @@ def NewCasesAgainstTime(request):
 
     options = Options()
 
-    options.SetTitle('United Kingdom New Daily Cases')
+    options.SetTitle('Daily Confirmed Cases')
     options.SetxAxisTitle('Date')
     options.SetyAxisTitle('New Cases')
     options.SetyAxisType('logarithmic')
