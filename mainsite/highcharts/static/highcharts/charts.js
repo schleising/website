@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function checkboxClicked(country, token) {
+function checkboxClicked(country) {
     var xmlhttp = new XMLHttpRequest();
-    var url = "/highcharts/checkbox_clicked";
 
     var checkbox = document.getElementById(country);
     var selected = checkbox.checked;
+    var url = "/highcharts/checkbox_clicked?country=" + country;
 
     if (selected == true) {
         var present = false;
@@ -29,17 +29,14 @@ function checkboxClicked(country, token) {
         }
 
         if (present == false) {
-            var json_msg = {name:country, checked:selected};
-
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var jsn = this.responseText;
                     newData(jsn);
                 }
             };
-            xmlhttp.open("POST", url, true);
-            xmlhttp.setRequestHeader("X-CSRFToken", token); 
-            xmlhttp.send(JSON.stringify(json_msg));
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
         }
     } else {
         for (current_series of myChart.series) {

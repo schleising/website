@@ -88,11 +88,11 @@ def NewCasesAgainstTime(request):
     return render(request, 'highcharts/global_new_cases.html', context)
 
 def CheckboxClicked(request : WSGIRequest):
-    checkbox_dict = json.loads(request.body)
+    country = request.GET.get('country')
 
     json_data = GetGlobalData()
 
-    df = pd.DataFrame(json_data[checkbox_dict['name']])
+    df = pd.DataFrame(json_data[country])
 
     df['daily_confirmed'] = df['confirmed'].diff()
 
@@ -110,7 +110,7 @@ def CheckboxClicked(request : WSGIRequest):
     average_daily_cases = df['MeanDailyConfirmed'].to_list()
 
     series = Series()
-    series.series_dict['name'] = f"{checkbox_dict['name']}"
+    series.series_dict['name'] = f"{country}"
     series.series_dict['type'] = 'line'
     series.series_dict['data'] = average_daily_cases
 
