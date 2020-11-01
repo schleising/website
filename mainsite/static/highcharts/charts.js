@@ -17,7 +17,9 @@ function checkboxClicked(country) {
 
     var checkbox = document.getElementById(country);
     var selected = checkbox.checked;
-    var url = "/highcharts/checkbox_clicked?country=" + country;
+    var baseUrl = new URL(window.location.href);
+    var url = new URL("/highcharts/checkbox_clicked", baseUrl.origin);
+    url.searchParams.append("country", country);
 
     if (selected == true) {
         var present = false;
