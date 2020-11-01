@@ -2,8 +2,23 @@
 
 {% block title %}<title>Daily New Cases</title>{% endblock %}
 
+{% block sidebarbutton %}
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary mb-2" data-toggle="collapse" data-target="#test">Show/Hide Countries</input>
+        </div>
+    </div>
+{% endblock %}
+
 {% block countries %}
-    <div class="col-sm-2" id="checkbox_div" style="height: calc(100vh - 56px); overflow: auto;">
+    <style>
+        .countries {
+            height: calc(100vh - 100px);
+            overflow-y: scroll;
+        }
+    </style>
+
+    <div class="col collapse countries" id="test">
         {% for country in countries %}
         <div class="custom-control custom-checkbox">
             <input type="checkbox" 

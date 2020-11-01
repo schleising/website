@@ -7,10 +7,12 @@
 
 {% block content %}
     <div class="container-fluid">
+        {% block sidebarbutton %}
+        {% endblock %}
         <div class="row">
             {% block countries %}
             {% endblock %}
-            <div class="col-sm-10" id="chart_div" style="width: 100vw; height: calc(100vh - 56px);">
+            <div class="col" id="chart_div" style="height: calc(100vh - 100px);">
             </div>
         </div>
     </div>
