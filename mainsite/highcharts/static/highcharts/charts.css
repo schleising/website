@@ -1,0 +1,8 @@
+.chart_element {
+    height: calc(100vh - 100px);
+}
+
+.countries_list {
+    overflow-y: scroll;
+    max-width: 250px;
+}

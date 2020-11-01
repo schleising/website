@@ -2,7 +2,7 @@
 
 {% block head %}
     {% load static %}
-    <script src="{% static 'highcharts/highcharts.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'highcharts/charts.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -12,20 +12,16 @@
         <div class="row">
             {% block countries %}
             {% endblock %}
-            <div class="col" id="chart_div" style="height: calc(100vh - 100px);">
+            <div class="col chart_element" id="chart_div">
             </div>
         </div>
     </div>
 
-    {{ options|json_script:"options" }}
+    {{ options|json_script:"options" }}    
+{% endblock %}
 
-    <script type="text/javascript">
-        const options = JSON.parse(document.getElementById('options').textContent);
-        var myChart;
-
-        document.addEventListener('DOMContentLoaded', function () {
-            myChart = Highcharts.chart('chart_div', options);
-        });
-    </script>
-    
+{% block scripts %}
+    {% load static %}
+    <script src="{% static 'highcharts/highcharts.js' %}"></script>
+    <script src="{% static 'highcharts/charts.js' %}"></script>
 {% endblock %}
