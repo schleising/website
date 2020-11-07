@@ -21,6 +21,7 @@ urlpatterns = [
     path('guess_the_r_number/', include('guess_the_r_number.urls')),
     path('covidstats/', include('charts.urls')),
     path('schitter/', include('schitter.urls')),
+    path('chartjs/', include('chartjs.urls')),
     path('charts/', include('charts.urls')),
     path('LeafletMaps/', include('LeafletMaps.urls')),
     path('highcharts/', include('highcharts.urls')),

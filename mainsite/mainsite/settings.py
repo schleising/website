@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'covidstats.apps.CovidstatsConfig',
     'schitter.apps.SchitterConfig',
     'charts.apps.ChartsConfig',
+    'chartjs.apps.ChartjsConfig',
     'LeafletMaps.apps.LeafletmapsConfig',
     'highcharts.apps.HighchartsConfig',
     'accounts.apps.AccountsConfig',

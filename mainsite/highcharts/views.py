@@ -54,8 +54,7 @@ def NewCasesAgainstTime(request):
 
     df = pd.DataFrame(json_data['United Kingdom'])
 
-    df['daily_confirmed']    = df['confirmed'].diff()
-    # df['daily_confirmed'][0] = df['confirmed'][0]
+    df['daily_confirmed'] = df['confirmed'].diff()
 
     # Use DataFrame.rolling() to generate running average data
     rolling = df.rolling(7)

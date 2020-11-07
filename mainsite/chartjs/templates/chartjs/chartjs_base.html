@@ -1,0 +1,28 @@
+{% extends "home/base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'chartjs/chartjs.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% block sidebarbutton %}
+        {% endblock %}
+        <div class="row">
+            {% block countries %}
+            {% endblock %}
+            <div class="col chart_element" id="chart_div">
+                <canvas id="chart_canvas"></canvas>
+            </div>
+        </div>
+    </div>
+
+    {{ chart|json_script:"chart" }}    
+{% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="{% static 'chartjs/chartjs.js' %}"></script>
+{% endblock %}
