@@ -7,7 +7,7 @@ for (dataset of myChart.data.datasets) {
     checkbox.checked = true;
 }
 
-function checkboxClicked(country) {
+function checkboxClicked(country, data_request) {
     var xmlhttp = new XMLHttpRequest();
 
     var checkbox = document.getElementById(country);
@@ -15,6 +15,7 @@ function checkboxClicked(country) {
     var baseUrl = new URL(window.location.href);
     var url = new URL("/chartjs/checkbox_clicked", baseUrl.origin);
     url.searchParams.append("country", country);
+    url.searchParams.append("DataRequest", data_request);
 
     if (selected == true) {
         var present = false;

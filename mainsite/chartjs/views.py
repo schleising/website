@@ -10,6 +10,8 @@ import pandas as pd
 
 from .libs.chart_js_dataclass import ChartJS, Dataset
 
+data_request_dict = {}
+
 # Generate Average Daily Cases Data
 def GenerateAverageDailyCases(country):
     json_data = GetGlobalData()
@@ -31,6 +33,8 @@ def GenerateAverageDailyCases(country):
 
     average_daily_cases = df['MeanDailyConfirmed'].to_list()
 
+    data_request_dict['AverageDailyCases'] = GenerateAverageDailyCases
+    
     return average_daily_cases
 
 # Create your views here.
@@ -63,10 +67,11 @@ def NewCasesAgainstTime(request):
 
 def CheckboxClicked(request : WSGIRequest):
     country = request.GET.get('country')
+    data_request = request.GET.get('DataRequest')
 
-    average_daily_cases = GenerateAverageDailyCases(country)
+    data = data_request_dict[data_request](country)
 
     dataset = Dataset()
-    dataset.AddDataset(f'{country}', average_daily_cases, 'line', randomColourAsRGBA(country))
+    dataset.AddDataset(f'{country}', data, 'line', randomColourAsRGBA(country))
 
     return JsonResponse(dataset.dataset_dict)
