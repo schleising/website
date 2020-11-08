@@ -1,8 +1,26 @@
 .chart_element {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 56px);
 }
 
 .countries_list {
     overflow-y: scroll;
     max-width: 250px;
+}
+
+.expander {
+    max-width: 40px;
+}
+
+.expander-btn {
+    max-width: 25px;
+}
+
+button.expander-btn.collapsed:after
+{
+    content: '>';
+}
+
+button.expander-btn:after
+{
+    content: '<';
 }

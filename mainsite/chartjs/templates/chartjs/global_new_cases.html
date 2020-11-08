@@ -2,16 +2,8 @@
 
 {% block title %}<title>Daily New Cases</title>{% endblock %}
 
-{% block sidebarbutton %}
-    <div class="row">
-        <div class="col-sm-12">
-            <button class="btn btn-primary mb-2" data-toggle="collapse" data-target="#test">Show/Hide Countries</button>
-        </div>
-    </div>
-{% endblock %}
-
 {% block countries %}
-    <div class="col collapse countries_list chart_element" id="test">
+    <div class="col collapse countries_list chart_element" id="countries_list">
         {% for country in countries %}
         <div class="custom-control custom-checkbox">
             <input type="checkbox" 
@@ -22,5 +14,8 @@
             <label class="custom-control-label" for="{{country}}">{{country}}</label>
         </div>
         {% endfor %}
+    </div>
+    <div class="col expander chart_element">
+        <button class="btn btn-light btn-sm chart_element expander-btn collapsed" data-toggle="collapse" data-target="#countries_list"></button>
     </div>
 {% endblock %}
