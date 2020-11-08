@@ -1,19 +1,13 @@
-from random import randrange, seed
-
 from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest
 from django.http.response import JsonResponse
 
 from utils.covid_data.global_data import GetGlobalData
+from utils.colours.colours import randomColourAsRGBA
 
 import pandas as pd
 
 from .libs.chart_js_dataclass import ChartJS, Dataset
-
-# Function to return a random colour
-def random_colour(country):
-    seed(country)
-    return tuple([randrange(255), randrange(255), randrange(255)])
 
 # Create your views here.
 def NewCasesAgainstTime(request):
@@ -46,9 +40,7 @@ def NewCasesAgainstTime(request):
     chart.SetCategories(date)
     chart.SetyAxis('logarithmic')
 
-    colour = random_colour('United Kingdom')
-
-    chart.AddDataset('United Kingdom', average_daily_cases, 'line', f'rgba({colour[0]}, {colour[1]}, {colour[2]}, 1)')
+    chart.AddDataset('United Kingdom', average_daily_cases, 'line', randomColourAsRGBA('United Kingdom'))
 
     context = {}
     context['chart'] = chart.chartjs_dict
@@ -78,9 +70,7 @@ def CheckboxClicked(request : WSGIRequest):
 
     average_daily_cases = df['MeanDailyConfirmed'].to_list()
 
-    colour = random_colour(country)
-
     dataset = Dataset()
-    dataset.AddDataset(f"{country}", average_daily_cases, 'line', f'rgba({colour[0]}, {colour[1]}, {colour[2]}, 1)')
+    dataset.AddDataset(f'{country}', average_daily_cases, 'line', randomColourAsRGBA(country))
 
     return JsonResponse(dataset.dataset_dict)
