@@ -7,7 +7,7 @@ def initialise_dataset():
     dataset_dict['label']          = 'Dataset'
     dataset_dict['data']           = []
     dataset_dict['borderColor']    = 'dodgerblue'
-    dataset_dict['borderWidth']    = 2
+    dataset_dict['borderWidth']    = 1
     dataset_dict['fill']           = False
     dataset_dict['pointRadius']    = 0
     dataset_dict['pointHitRadius'] = 5
