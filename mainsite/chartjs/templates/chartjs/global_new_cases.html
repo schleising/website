@@ -3,17 +3,19 @@
 {% block title %}<title>Daily New Cases</title>{% endblock %}
 
 {% block countries %}
-    <div class="col collapse countries_list chart_element" id="countries_list">
-        {% for country in countries %}
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" 
-                   class="custom-control-input" 
-                   id="{{country}}" 
-                   name="{{country}}" 
-                   onclick="checkboxClicked('{{ country }}', 'AverageDailyCases')">
-            <label class="custom-control-label" for="{{country}}">{{country}}</label>
+    <div class="collapse width" id="countries_list">
+        <div class="col countries_list chart_element">
+            {% for country in countries %}
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" 
+                       class="custom-control-input" 
+                       id="{{country}}" 
+                       name="{{country}}" 
+                       onclick="checkboxClicked('{{ country }}', 'AverageDailyCases')">
+                <label class="custom-control-label" for="{{country}}">{{country}}</label>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
     <div class="col expander chart_element">
         <button class="btn btn-light btn-sm chart_element expander-btn collapsed" data-toggle="collapse" data-target="#countries_list"></button>

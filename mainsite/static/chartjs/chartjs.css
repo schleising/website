@@ -5,6 +5,7 @@
 .countries_list {
     overflow-y: scroll;
     max-width: 250px;
+    transition: .3s transform ease-in-out;
 }
 
 .expander {
@@ -15,12 +16,29 @@
     max-width: 25px;
 }
 
-button.expander-btn.collapsed:after
-{
+.expander-btn::before {
+    content: '<';
+}
+
+.expander-btn.collapsed::before { 
     content: '>';
 }
 
-button.expander-btn:after
-{
-    content: '<';
-}
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition-property: height, visibility;
+    transition-property: height, visibility;
+    -webkit-transition-duration: 0.35s;
+    transition-duration: 0.35s;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+  }
+
+  .collapsing.width {
+    -webkit-transition-property: width, visibility;
+    transition-property: width, visibility;
+    width: 0;
+    height: auto;
+  }
