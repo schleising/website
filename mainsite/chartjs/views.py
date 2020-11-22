@@ -10,7 +10,7 @@ import pandas as pd
 
 from .libs.chart_js_dataclass import ChartJS, Dataset
 
-data_request_dict = {}
+data_request_function_dict = {}
 
 # Generate Average Daily Cases Data
 def GenerateAverageDailyCases(country):
@@ -33,7 +33,7 @@ def GenerateAverageDailyCases(country):
 
     average_daily_cases = df['MeanDailyConfirmed'].to_list()
 
-    data_request_dict['AverageDailyCases'] = GenerateAverageDailyCases
+    data_request_function_dict['AverageDailyCases'] = GenerateAverageDailyCases
     
     return average_daily_cases
 
@@ -69,7 +69,8 @@ def CheckboxClicked(request : WSGIRequest):
     country = request.GET.get('country')
     data_request = request.GET.get('DataRequest')
 
-    data = data_request_dict[data_request](country)
+    # For future reference, this is a function call !!
+    data = data_request_function_dict[data_request](country)
 
     dataset = Dataset()
     dataset.AddDataset(f'{country}', data, 'line', randomColourAsRGBA(country))
