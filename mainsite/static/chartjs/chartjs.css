@@ -2,10 +2,12 @@
     height: calc(100vh - 56px);
 }
 
+.countries_list_outer_div {
+    max-width: 250px;
+}
+
 .countries_list {
     overflow-y: scroll;
-    max-width: 250px;
-    transition: .3s transform ease-in-out;
 }
 
 .expander {
