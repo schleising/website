@@ -1,0 +1,23 @@
+{% extends "chartjs/chartjs_base.html" %}
+
+{% block title %}<title>Daily Cases against Total Cases</title>{% endblock %}
+
+{% block countries %}
+    <div class="collapse width countries_list_outer_div" id="countries_list">
+        <div class="col countries_list chart_element">
+            {% for country in countries %}
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" 
+                       class="custom-control-input" 
+                       id="{{country}}" 
+                       name="{{country}}" 
+                       onclick="checkboxClicked('{{ country }}', 'DailyCasesTotalCases')">
+                <label class="custom-control-label" for="{{country}}">{{country}}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col expander chart_element">
+        <button class="btn btn-light btn-sm chart_element expander-btn collapsed" data-toggle="collapse" data-target="#countries_list"></button>
+    </div>
+{% endblock %}
