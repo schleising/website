@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'chartjs.apps.ChartjsConfig',
     'LeafletMaps.apps.LeafletmapsConfig',
     'highcharts.apps.HighchartsConfig',
+    'go_test.apps.GoTestConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
