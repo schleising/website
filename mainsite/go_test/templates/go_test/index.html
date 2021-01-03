@@ -1,0 +1,56 @@
+{% extends "home/base.html" %}
+
+{% block title %}<title>Go Test</title>{% endblock %}
+
+{% block head %}
+<style>
+    html, body {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        color: #fff;
+        background-color: #00a6a6;
+        /*font-family: 'Comfortaa', cursive;*/
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .game-container {
+        display: grid;
+    }
+
+    .game-area {
+        grid-area: game-area;
+        background-color: #29335c;
+        text-align: center;
+    }
+
+    .game-area > canvas {
+        display: inline;
+    }
+</style>
+
+    {% load static %}
+{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <div class="game-area">
+        <canvas id="canvas"/>
+    </div>
+</div>
+
+{% load static %}
+<script src="{% static 'go_test/wasm_exec.js' %}"></script>
+<script>
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch("{% static 'go_test/Gol.wasm' %}"), go.importObject).then((result) => {
+        go.run(result.instance);
+    });
+</script>
+
+{% load static %}
+
+{% endblock %}

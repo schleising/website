@@ -25,6 +25,7 @@ urlpatterns = [
     path('charts/', include('charts.urls')),
     path('LeafletMaps/', include('LeafletMaps.urls')),
     path('highcharts/', include('highcharts.urls')),
+    path('go_test/', include('go_test.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
