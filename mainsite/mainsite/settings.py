@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     'www.schleising.net',
     'schleising.net',
     'stephensmacbook',
+    'stephens-mbp',
 ]
 
 
