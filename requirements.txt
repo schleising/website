@@ -1,0 +1,5 @@
+numpy
+pandas
+django
+requests
+uk-covid19

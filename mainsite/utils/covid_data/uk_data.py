@@ -1,6 +1,7 @@
 from uk_covid19 import Cov19API
 
 from django.core.cache import cache
+from uk_covid19.api_interface import StructureType
 
 def GetUKData(area_name):
 
@@ -9,7 +10,7 @@ def GetUKData(area_name):
         f"areaName={area_name}",
     ]
 
-    cases = {
+    cases: StructureType = {
         "date": "date",
         "areaName": "areaName",
         "newCasesBySpecimenDate": "newCasesBySpecimenDate",

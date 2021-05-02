@@ -6,12 +6,13 @@ import numpy as np
 import pandas as pd
 
 from uk_covid19 import Cov19API
+from uk_covid19.api_interface import StructureType
 
 all_nations = [
     "areaType=utla",
 ]
 
-cases_and_deaths = {
+cases_and_deaths: StructureType = {
     "date": "date",
     "areaName": "areaName",
     "areaCode": "areaCode",
@@ -51,11 +52,11 @@ def uk_cumulative_cases(request):
 
     geo_merged_df['ConfPerCap'] = (geo_merged_df['cumCasesByPublishDate'] / geo_merged_df['Population']) * 100000
 
-    min_cpc = np.math.log(min(geo_merged_df['ConfPerCap']))
-    max_cpc = np.math.log(max(geo_merged_df['ConfPerCap']))
+    min_cpc = np.log(min(geo_merged_df['ConfPerCap']))
+    max_cpc = np.log(max(geo_merged_df['ConfPerCap']))
 
     graduations_ndarray = np.linspace(min_cpc, max_cpc, 7)
-    graduations = [np.math.exp(x) for x in graduations_ndarray]
+    graduations = [np.exp(x) for x in graduations_ndarray]
 
     context = {}
     context['geo_data'] = json.loads(geo_merged_df.to_json())

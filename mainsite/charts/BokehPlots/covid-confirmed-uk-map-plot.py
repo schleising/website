@@ -1,3 +1,4 @@
+from uk_covid19.api_interface import StructureType
 from libs.choropleth_chart import ChoroplethChart
 
 from uk_covid19 import Cov19API
@@ -7,7 +8,7 @@ all_nations = [
     "areaType=utla",
 ]
 
-cases_and_deaths = {
+cases_and_deaths: StructureType = {
     "date": "date",
     "areaName": "areaName",
     "areaCode": "areaCode",
