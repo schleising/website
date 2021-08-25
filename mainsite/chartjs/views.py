@@ -9,28 +9,34 @@ import pandas as pd
 
 from .libs.chart_js_dataclass import ChartJS, Dataset
 
+totalDays = 0
+
 # Generate Average Data
 def GenerateAverages(country, data_request):
-    json_data = GetGlobalData()
+    if country == 'Tim':
+        print(totalDays)
+        averages = [0 if index < 576 else 1 for index in range(totalDays)]
+    else:
+        json_data = GetGlobalData()
 
-    df = pd.DataFrame(json_data[country])
+        df = pd.DataFrame(json_data[country])
 
-    df['daily_confirmed'] = df['confirmed'].diff()
-    df['daily_deaths']    = df['deaths'].diff()
+        df['daily_confirmed'] = df['confirmed'].diff()
+        df['daily_deaths']    = df['deaths'].diff()
 
-    # Use DataFrame.rolling() to generate running average data
-    rolling = df.rolling(7)
+        # Use DataFrame.rolling() to generate running average data
+        rolling = df.rolling(7)
 
-    # Calculate the rolling mean of the whole data frame
-    mean = rolling.mean()
+        # Calculate the rolling mean of the whole data frame
+        mean = rolling.mean()
 
-    # Add the rolling mean columns to the data frame
-    df['AverageDailyCases']  = mean['daily_confirmed'].round()
-    df['AverageDailyDeaths'] = mean['daily_deaths'].round()
+        # Add the rolling mean columns to the data frame
+        df['AverageDailyCases']  = mean['daily_confirmed'].round()
+        df['AverageDailyDeaths'] = mean['daily_deaths'].round()
 
-    df.fillna(0, inplace=True)
+        df.fillna(0, inplace=True)
 
-    averages = df[data_request].to_list()
+        averages = df[data_request].to_list()
 
     return averages
 
@@ -41,12 +47,16 @@ def NewCasesAgainstTime(request):
     json_data = GetGlobalData()
 
     countries = [country for country in json_data]
+    countries.insert(0, 'Tim')
 
     df = pd.DataFrame(json_data[default_country])
 
     date = df['date'].to_list()
 
     average_daily_cases = GenerateAverages(default_country, 'AverageDailyCases')
+
+    global totalDays
+    totalDays = len(average_daily_cases)
 
     chart = ChartJS()
 
